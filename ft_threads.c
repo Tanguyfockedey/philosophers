@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   ft_threads.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 15:13:29 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/18 20:03:51 by tafocked         ###   ########.fr       */
+/*   Created: 2024/03/18 20:03:41 by tafocked          #+#    #+#             */
+/*   Updated: 2024/03/18 20:05:47 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	main(int argc, char **argv)
+int		ft_threads(t_rules *rules)
 {
-	int		err;
-	t_rules	rules;
-
-	if ((err = ft_argcheck(argc, argv)))
-		return (err);
-	if ((err = ft_init(argv, &rules)))
-	{
-		ft_free(&rules);
-		return (err);
-	}
-	if ((err = ft_threads(&rules)))
-	{
-		ft_free(&rules);
-		return (err);
-	}
-	printf("ok\n");
-	ft_free(&rules);
+	
 }
