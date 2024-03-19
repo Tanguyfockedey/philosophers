@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   atoi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:00:51 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/13 17:01:48 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:26:42 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 	which is returned as a value of type int.
 */
 
-static char	*ft_prestr(char *str, char *sign)
+static char	*prestr(char *str, char *sign)
 {
 	int	i;
 
@@ -31,7 +31,7 @@ static char	*ft_prestr(char *str, char *sign)
 	return (&str[i]);
 }
 
-int	ft_atoi(const char *string)
+int	atoi(const char *string)
 {
 	char	sign;
 	char	*str;
@@ -42,7 +42,7 @@ int	ft_atoi(const char *string)
 	i = 0;
 	unb = 0;
 	mult10 = 1;
-	str = ft_prestr((char *)string, &sign);
+	str = prestr((char *)string, &sign);
 	while (str[i] >= '0' && str[i] <= '9')
 		i++;
 	while (i > 0)

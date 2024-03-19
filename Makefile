@@ -6,7 +6,7 @@
 #    By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 15:13:32 by tafocked          #+#    #+#              #
-#    Updated: 2024/03/18 18:16:26 by tafocked         ###   ########.fr        #
+#    Updated: 2024/03/19 15:05:07 by tafocked         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,19 +15,26 @@ NAME	= philo
 FILES	= $(wildcard *.c) \
 
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS	= -Wall -Wextra -Werror -fsanitize=thread -g
 LDLIBS	= -lpthread
-OBJ = $(FILES:.c=.o) #to define, objs folder or not
+
+FILES_DIR	= ./
+OBJ_DIR	= .objs
+OBJ		= $(addprefix $(OBJ_DIR)/, $(FILES:%.c=%.o))
 
 all: $(NAME)
 
 re: fclean all
 
+$(OBJ_DIR)/%.o: $(FILES_DIR)/%.c
+	mkdir -p $(@D)
+	$(CC) $(OPTIONS) -c $< -o $@
+
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(LDLIBS) $(OBJ) -o $(NAME)
 
 clean:
-	rm -rf $(OBJ)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(NAME)
