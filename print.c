@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/18 18:41:00 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/19 20:43:59 by tafocked         ###   ########.fr       */
+/*   Created: 2024/03/19 17:52:02 by tafocked          #+#    #+#             */
+/*   Updated: 2024/03/19 19:36:57 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	timestamp(void)
+void	print_action(t_philosopher *philo, char *str)
 {
-	struct timeval	t;
+	t_rules	*rules;
 
-	gettimeofday(&t, NULL);
-	return (t.tv_sec * 1000 + t.tv_usec / 1000);
-}
-
-void	precise_msleep(int ms)
-{
-	int	t;
-
-	t = timestamp() + ms;
-	while (timestamp() < t)
-		usleep(10);
+	rules = philo->rules;
+	pthread_mutex_lock(&rules->writing);
+	printf("%d\t%d %s\n", timestamp() - rules->start, philo->id + 1, str);
+	pthread_mutex_unlock(&rules->writing);
 }

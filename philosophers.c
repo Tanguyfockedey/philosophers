@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:13:29 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/19 16:00:51 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:43:30 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,5 @@ int	main(int argc, char **argv)
 		free_struct(&rules);
 		return (1);
 	}
-	printf("ok\n");
-	printf("timestamp : %d\n", timestamp());
 	free_struct(&rules);
 }

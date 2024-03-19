@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:13:27 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/19 16:12:07 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/19 21:18:36 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHILOSOPHERS_H
 
 # include <stdio.h>
+# include <unistd.h>
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
@@ -21,8 +22,8 @@
 typedef struct s_philosopher
 {
 	int				id;
-	int				nb_meals;
-	int				time_last_meal;
+	int				nb_eat;
+	int				time_last_eat;
 	int				fork_1;
 	int				fork_2;
 	pthread_t		thread;
@@ -40,7 +41,6 @@ typedef struct	s_rules
 	t_philosopher	*philo;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	writing;
-	//pthread_mutex_t	*fork;
 }	t_rules;
 
 int		argcheck(int argc, char **argv);
@@ -50,5 +50,8 @@ void	free_struct(t_rules *rules);
 int		init_all(char **argv, t_rules *rules);
 int		threads(t_rules *rules);
 int		timestamp(void);
+void	precise_msleep(int ms);
+
+void	print_action(t_philosopher *philo, char *str);
 
 #endif

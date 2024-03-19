@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:03:59 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/19 16:17:51 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/19 21:17:51 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,11 @@ static int	init_philo(t_rules *rules)
 	i = -1;
 	while (++i < rules->nb_philo)
 	{
-		rules->philo[i].nb_meals = 0;
+		rules->philo[i].id = i;
+		rules->philo[i].nb_eat = 0;
+		rules->philo[i].fork_1 = i;
+		rules->philo[i].fork_2 = (i + 1) % rules->nb_philo;
+		rules->philo[i].rules = rules;
 	}
 	return (0);
 }
