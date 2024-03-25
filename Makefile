@@ -6,7 +6,7 @@
 #    By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 15:13:32 by tafocked          #+#    #+#              #
-#    Updated: 2024/03/19 21:03:40 by tafocked         ###   ########.fr        #
+#    Updated: 2024/03/25 21:11:29 by tafocked         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC		= cc
 CFLAGS	= -Wall -Wextra -Werror #-fsanitize=thread -g
 LDLIBS	= -lpthread
 
-FILES_DIR	= ./
+FILES_DIR = ./
 OBJ_DIR	= .obj
 OBJ		= $(addprefix $(OBJ_DIR)/, $(FILES:%.c=%.o))
 

@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:52:02 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/19 19:36:57 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/25 21:41:16 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	print_action(t_philosopher *philo, char *str)
 
 	rules = philo->rules;
 	pthread_mutex_lock(&rules->writing);
-	printf("%d\t%d %s\n", timestamp() - rules->start, philo->id + 1, str);
+	if (!philo->rules->died)
+		printf("%d\t%d %s\n", timestamp() - rules->start, philo->id + 1, str);
 	pthread_mutex_unlock(&rules->writing);
 }

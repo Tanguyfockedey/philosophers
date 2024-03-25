@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:13:27 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/25 14:31:13 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/25 21:38:58 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct s_rules
 	int				time_eat;
 	int				time_sleep;
 	int				nb_eat;
+	int				all_ate;
+	int				died;
 	t_philosopher	*philo;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	writing;
@@ -50,7 +52,8 @@ void	free_struct(t_rules *rules);
 int		init_all(char **argv, t_rules *rules);
 int		threads(t_rules *rules);
 int		timestamp(void);
-void	precise_msleep(int ms);
+void	msleep(int ms);
+void	sleeptill(int t);
 
 void	print_action(t_philosopher *philo, char *str);
 
