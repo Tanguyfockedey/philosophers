@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 20:03:41 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/19 21:25:20 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:32:35 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	philo_eat(t_philosopher *philo)
 	print_action(philo, "is sleeping");
 	precise_msleep(philo->rules->time_sleep);
 	print_action(philo, "is thinking");
-
 }
 
 void	*live(void *void_philo)
@@ -40,17 +39,16 @@ void	*live(void *void_philo)
 	philo->time_last_eat = timestamp();
 	while (philo->nb_eat < philo->rules->nb_eat)
 		philo_eat(philo);
-	// philo_sleep(philo);
-	// philo_think(philo);
 	return (NULL);
 }
+
 void	*scythe(void *void_rules)
 {
 	(void)void_rules;
 	return (NULL);
 }
 
-int		threads(t_rules *rules)
+int	threads(t_rules *rules)
 {
 	int			i;
 	pthread_t	ankou;
@@ -59,7 +57,8 @@ int		threads(t_rules *rules)
 	i = -1;
 	while (++i < rules->nb_philo)
 	{
-		if (pthread_create(&rules->philo[i].thread, NULL, &live, &rules->philo[i]))
+		if (pthread_create(&rules->philo[i].thread, NULL,
+				&live, &rules->philo[i]))
 			return (err_msg(1, "Failed to create thread !"));
 	}
 	if (pthread_create(&ankou, NULL, &scythe, rules))

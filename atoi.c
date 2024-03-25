@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:00:51 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/19 15:26:42 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:30:40 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	atoi(const char *string)
 	char	sign;
 	char	*str;
 	int		i;
-	int	unb;
-	int	mult10;
+	int		unb;
+	int		mult10;
 
 	i = 0;
 	unb = 0;

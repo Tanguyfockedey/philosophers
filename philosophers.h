@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:13:27 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/19 21:18:36 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:31:13 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_philosopher
 	struct s_rules	*rules;
 }	t_philosopher;
 
-typedef struct	s_rules
+typedef struct s_rules
 {
 	int				start;
 	int				nb_philo;
