@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:13:29 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/27 21:23:42 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/27 22:42:31 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ int	main(int argc, char **argv)
 	if (argcheck(argc, argv))
 		return (1);
 	if (init_all(argv, &rules))
-	{
-		free_struct(&rules);
 		return (1);
-	}
 	if (threads(&rules))
 	{
 		free_struct(&rules);

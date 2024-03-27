@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:03:59 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/27 21:15:40 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/27 22:57:57 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@ static int	init_rules(char **argv, t_rules *rules)
 	else
 		rules->nb_eat = __INT_MAX__;
 	rules->all_ate = 0;
-	if (rules->nb_philo <= 0 || rules->time_die <= 0 || rules->time_eat <= 0
-		|| rules->time_sleep <= 0 || rules->nb_eat <= 0)
+	if (rules->nb_philo <= 0 || rules->nb_philo > 1000
+		|| rules->time_die <= 0 || rules->time_die > 10000000
+		|| rules->time_eat <= 0 || rules->time_eat > 10000000
+		|| rules->time_sleep <= 0 || rules->time_sleep > 10000000
+		|| rules->nb_eat <= 0)
 		return (err_msg(1, "Wrong argument values !"));
 	return (0);
 }
@@ -79,11 +82,10 @@ int	init_all(char **argv, t_rules *rules)
 {
 	if (init_rules(argv, rules))
 		return (1);
-	if (init_alloc(rules))
+	if (init_alloc(rules) || init_philo(rules) || init_mutex(rules))
+	{
+		free_struct(rules);
 		return (1);
-	if (init_philo(rules))
-		return (1);
-	if (init_mutex(rules))
-		return (1);
+	}
 	return (0);
 }

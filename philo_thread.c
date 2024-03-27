@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:48:09 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/27 18:41:47 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/27 23:39:22 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	fork_unlock(t_philosopher *philo)
 	return (0);
 }
 
-int	philo_eat(t_philosopher *philo)
+int	philo_live(t_philosopher *philo)
 {
 	if (philo->rules->nb_philo < 2)
 		return (0);
@@ -63,16 +63,18 @@ int	philo_eat(t_philosopher *philo)
 	philo->time_last_eat = timestamp();
 	print_action(philo, "is eating");
 	philo->nb_eat++;
-	sleeptill(philo->time_last_eat + philo->rules->time_eat);
+	sleeptill(philo, philo->time_last_eat + philo->rules->time_eat);
 	if (fork_unlock(philo))
 		return (err_msg(1, "Fork unlock fail !"));
 	print_action(philo, "is sleeping");
-	sleeptill(philo->time_last_eat + philo->rules->time_eat + philo->rules->time_sleep);
-	if (philo->rules->all_ate)
-		return (0);
+	sleeptill(philo, philo->time_last_eat
+		+ philo->rules->time_eat + philo->rules->time_sleep);
+	// if (philo->rules->all_ate)
+		// return (0);
 	print_action(philo, "is thinking");
 	if (philo->rules->nb_philo % 2)
-		msleep(1);
+		sleeptill(philo, timestamp() + 1);
+		// msleep(1);
 	return (0);
 }
 
@@ -83,8 +85,8 @@ void	*philo_routine(void *void_philo)
 	philo = void_philo;
 	philo->time_last_eat = timestamp();
 	if (philo->id % 2)
-		msleep(philo->rules->time_eat / 2);
+		sleeptill(philo, philo->time_last_eat + philo->rules->time_eat / 2);
 	while (!philo->rules->all_ate && !philo->rules->died)
-		philo_eat(philo);
+		philo_live(philo);
 	return (NULL);
 }

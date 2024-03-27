@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:13:27 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/27 18:41:56 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/27 23:26:10 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		init_all(char **argv, t_rules *rules);
 int		threads(t_rules *rules);
 int		timestamp(void);
 void	msleep(int ms);
-void	sleeptill(int t);
+void	sleeptill(t_philosopher *philo, int t);
 void	*philo_routine(void *void_philo);
 void	print_action(t_philosopher *philo, char *str);
 
