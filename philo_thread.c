@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:48:09 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/26 18:58:35 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:41:47 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,18 @@ int	philo_eat(t_philosopher *philo)
 	if (philo->rules->all_ate)
 		return (0);
 	print_action(philo, "is thinking");
-	msleep(philo->rules->time_think);
+	if (philo->rules->nb_philo % 2)
+		msleep(1);
 	return (0);
 }
 
-void	*live(void *void_philo)
+void	*philo_routine(void *void_philo)
 {
 	t_philosopher	*philo;
 
 	philo = void_philo;
 	philo->time_last_eat = timestamp();
-	if (!philo->id % 2)
+	if (philo->id % 2)
 		msleep(philo->rules->time_eat / 2);
 	while (!philo->rules->all_ate && !philo->rules->died)
 		philo_eat(philo);

@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:13:29 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/19 18:43:30 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/27 21:23:42 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	free_struct(&rules);
+	return (0);
 }

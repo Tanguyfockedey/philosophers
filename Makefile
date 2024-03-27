@@ -6,7 +6,7 @@
 #    By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 15:13:32 by tafocked          #+#    #+#              #
-#    Updated: 2024/03/25 21:11:29 by tafocked         ###   ########.fr        #
+#    Updated: 2024/03/27 21:22:36 by tafocked         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ re: fclean all
 
 $(OBJ_DIR)/%.o: $(FILES_DIR)/%.c
 	mkdir -p $(@D)
-	$(CC) $(OPTIONS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(LDLIBS) $(OBJ) -o $(NAME)

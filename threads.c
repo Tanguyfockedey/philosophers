@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 20:03:41 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/26 15:14:49 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/27 21:41:49 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,34 @@ void	ate_check(t_rules *rules)
 	rules->all_ate = 1;
 }
 
-void	*scythe(void *void_rules)
+int	death_check(t_rules *rules)
 {
-	t_rules	*rules;
-	int		i;
+	int	i;
 
-	i = 0;
-	rules = void_rules;
-	msleep(rules->time_die / 2);
-	while (!rules->all_ate)
+	i = -1;
+	while (++i < rules->nb_philo)
 	{
 		if ((rules->philo[i].time_last_eat) < timestamp() - rules->time_die)
 		{
 			rules->died = 1;
-			printf("%d\t%d died\n",
+			printf("%d\t%d\tdied\n",
 				timestamp() - rules->start, rules->philo[i].id + 1);
-			return (NULL);
+			return (1);
 		}
+	}
+	return (0);
+}
+
+void	*observer_routine(void *void_rules)
+{
+	t_rules	*rules;
+
+	rules = void_rules;
+	while (!rules->all_ate)
+	{
+		if (death_check(rules))
+			return (NULL);
 		ate_check(rules);
-		i++;
-		if (i == rules->nb_philo)
-			i = 0;
 	}
 	return (NULL);
 }
@@ -53,25 +60,25 @@ void	*scythe(void *void_rules)
 int	threads(t_rules *rules)
 {
 	int			i;
-	pthread_t	ankou;
+	pthread_t	observer;
 
 	rules->start = timestamp();
+	if (pthread_create(&observer, NULL, &observer_routine, rules))
+		return (err_msg(1, "Failed to create thead !"));
 	i = -1;
 	while (++i < rules->nb_philo)
 	{
 		if (pthread_create(&rules->philo[i].thread, NULL,
-				&live, &rules->philo[i]))
+				&philo_routine, &rules->philo[i]))
 			return (err_msg(1, "Failed to create thread !"));
 	}
-	if (pthread_create(&ankou, NULL, &scythe, rules))
-		return (err_msg(1, "Failed to create thead !"));
+	if (pthread_join(observer, NULL))
+		return (err_msg(1, "Failed to join thread !"));
 	i = -1;
 	while (++i < rules->nb_philo)
 	{
 		if (pthread_join(rules->philo[i].thread, NULL))
 			return (err_msg(1, "Failed to join thread !"));
 	}
-	if (pthread_join(ankou, NULL))
-		return (err_msg(1, "Failed to join thread !"));
 	return (0);
 }

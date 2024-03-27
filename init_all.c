@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:03:59 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/26 19:03:48 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/27 21:15:40 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ static int	init_rules(char **argv, t_rules *rules)
 	if (rules->nb_philo <= 0 || rules->time_die <= 0 || rules->time_eat <= 0
 		|| rules->time_sleep <= 0 || rules->nb_eat <= 0)
 		return (err_msg(1, "Wrong argument values !"));
-	if (rules->time_eat > rules->time_sleep)
-		rules->time_think = rules->time_sleep / 2;
-	else
-		rules->time_think = rules->time_eat / 2;
 	return (0);
 }
 
@@ -81,8 +77,6 @@ static int	init_mutex(t_rules *rules)
 
 int	init_all(char **argv, t_rules *rules)
 {
-	int	err;
-
 	if (init_rules(argv, rules))
 		return (1);
 	if (init_alloc(rules))
