@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:41:00 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/27 23:26:44 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/28 18:51:56 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	msleep(int ms)
 
 	t = timestamp() + ms;
 	while (timestamp() < t)
-		usleep(50);
+		usleep(100);
 }
 
 void	sleeptill(t_philosopher *philo, int t)
@@ -35,6 +35,6 @@ void	sleeptill(t_philosopher *philo, int t)
 	{
 		if (philo->rules->died)
 			return ;
-		usleep(50);
+		usleep(100);
 	}
 }

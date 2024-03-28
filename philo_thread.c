@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:48:09 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/27 23:39:22 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/28 19:27:48 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,9 @@ int	philo_live(t_philosopher *philo)
 	print_action(philo, "is sleeping");
 	sleeptill(philo, philo->time_last_eat
 		+ philo->rules->time_eat + philo->rules->time_sleep);
-	// if (philo->rules->all_ate)
-		// return (0);
 	print_action(philo, "is thinking");
 	if (philo->rules->nb_philo % 2)
 		sleeptill(philo, timestamp() + 1);
-		// msleep(1);
 	return (0);
 }
 

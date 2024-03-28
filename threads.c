@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 20:03:41 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/27 21:41:49 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/28 19:24:29 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	*observer_routine(void *void_rules)
 		if (death_check(rules))
 			return (NULL);
 		ate_check(rules);
+		msleep(1);
 	}
 	return (NULL);
 }
