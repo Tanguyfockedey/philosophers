@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:03:59 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/28 19:25:39 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/28 19:29:41 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ static int	init_mutex(t_rules *rules)
 			return (err_msg(1, "Mutex initialisation fail !"));
 	}
 	if (pthread_mutex_init(&rules->writing, NULL))
+		return (err_msg(1, "Mutex initialisation fail !"));
+	if (pthread_mutex_init(&rules->eating, NULL))
 		return (err_msg(1, "Mutex initialisation fail !"));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:48:09 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/28 19:27:48 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/28 19:42:30 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,10 @@ int	philo_live(t_philosopher *philo)
 		return (0);
 	if (fork_lock(philo))
 		return (err_msg(1, "Fork lock fail !"));
+	pthread_mutex_lock(&philo->rules->eating);
 	philo->time_last_eat = timestamp();
 	print_action(philo, "is eating");
+	pthread_mutex_unlock(&philo->rules->eating);
 	philo->nb_eat++;
 	sleeptill(philo, philo->time_last_eat + philo->rules->time_eat);
 	if (fork_unlock(philo))

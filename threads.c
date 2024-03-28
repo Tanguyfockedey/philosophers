@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 20:03:41 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/28 19:24:29 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/28 19:33:16 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,16 @@ int	death_check(t_rules *rules)
 	i = -1;
 	while (++i < rules->nb_philo)
 	{
+		pthread_mutex_lock(&rules->eating);
 		if ((rules->philo[i].time_last_eat) < timestamp() - rules->time_die)
 		{
 			rules->died = 1;
 			printf("%d\t%d\tdied\n",
 				timestamp() - rules->start, rules->philo[i].id + 1);
+			pthread_mutex_unlock(&rules->eating);
 			return (1);
 		}
+		pthread_mutex_unlock(&rules->eating);
 	}
 	return (0);
 }

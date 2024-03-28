@@ -6,7 +6,7 @@
 /*   By: tafocked <tafocked@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:13:27 by tafocked          #+#    #+#             */
-/*   Updated: 2024/03/28 19:24:59 by tafocked         ###   ########.fr       */
+/*   Updated: 2024/03/28 19:29:23 by tafocked         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_rules
 	t_philosopher	*philo;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	writing;
+	pthread_mutex_t	eating;
 }	t_rules;
 
 int		argcheck(int argc, char **argv);
